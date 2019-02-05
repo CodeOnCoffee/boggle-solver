@@ -1,0 +1,109 @@
+{
+  "name": "boot-react-frontend",
+  "version": "0.0.1",
+  "description": "Spring boot and react frontend",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "bundle": "cross-env NODE_ENV=development webpack -p --optimize-dedupe",
+    "test": "cross-env NODE_ENV=test mocha",
+    "webpack-watch": "cross-env NODE_ENV=development webpack --watch --progress --mode development"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "boilerplate",
+    "hot",
+    "reload"
+  ],
+  "author": "Geoffroy Warin",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "7.1.5",
+    "@babel/core": "7.1.5",
+    "@babel/plugin-proposal-decorators": "7.1.2",
+    "@babel/plugin-proposal-export-default-from": "7.0.0",
+    "@babel/plugin-proposal-object-rest-spread": "7.0.0",
+    "@babel/preset-env": "7.1.5",
+    "@babel/preset-flow": "7.0.0",
+    "@babel/preset-react": "7.0.0",
+    "@storybook/addon-actions": "4.0.4",
+    "@storybook/addon-console": "1.1.0",
+    "@storybook/addon-knobs": "4.0.4",
+    "@storybook/addon-links": "4.0.4",
+    "@storybook/addons": "4.0.4",
+    "@storybook/react": "4.0.4",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "10.0.1",
+    "babel-jest": "23.6.0",
+    "babel-loader": "8.0.4",
+    "babel-plugin-dynamic-import-webpack": "1.1.0",
+    "babel-plugin-syntax-dynamic-import": "6.18.0",
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "connect-history-api-fallback": "^1.2.0",
+    "cross-env": "^1.0.7",
+    "css-loader": "^0.23.1",
+    "enzyme": "^2.2.0",
+    "expect": "^1.16.0",
+    "express": "^4.13.4",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "html-webpack-plugin": "^2.15.0",
+    "http-proxy-middleware": "^0.13.0",
+    "jeet": "6.1.2",
+    "jsdom": "^11.0.0",
+    "jsdom-global": "^3.0.2",
+    "json-loader": "^0.5.4",
+    "less-loader": "4.1.0",
+    "less": "3.8.1",
+    "mocha": "^2.4.5",
+    "nib": "^1.1.0",
+    "purecss": "^0.6.0",
+    "react-addons-test-utils": "^15.0.0",
+    "redux-devtools": "^3.2.0",
+    "redux-devtools-dock-monitor": "^1.1.1",
+    "redux-devtools-log-monitor": "^1.0.9",
+    "stripcomment-loader": "^0.1.0",
+    "style-loader": "^0.13.1",
+    "stylus-loader": "^2.0.0",
+    "terser": "3.14.1",
+    "terser-webpack-plugin": "1.2.1",
+    "webpack": "4.25.1",
+    "webpack-bundle-analyzer": "3.0.3",
+    "webpack-cli": "3.1.2"
+  },
+  "dependencies": {
+    "@material-ui/core": "^3.9.2",
+    "axios": "^0.9.1",
+    "lodash": "^4.17.11",
+    "react": "16.6.1",
+    "react-dom": "16.6.1",
+    "typeface-roboto": "^0.0.54",
+    "webpack-dev-middleware": "^3.5.1"
+  },
+  "babel": {
+    "presets": [
+      "@babel/flow",
+      "@babel/preset-react",
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "chrome": "65"
+          }
+        }
+      ]
+    ],
+    "plugins": [
+      "syntax-dynamic-import",
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ],
+      "transform-class-properties",
+      "@babel/plugin-proposal-object-rest-spread",
+      "@babel/plugin-proposal-export-default-from"
+    ]
+  }
+}

@@ -1,0 +1,79 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.5.RELEASE")
+        classpath "se.transmode.gradle:gradle-docker:1.2"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'docker'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+jar {
+    baseName = 'codeoncoffee-boggle'
+    version = '0.0.1-SNAPSHOT'
+}
+
+processResources.dependsOn(':frontend:assemble')
+
+
+
+processResources {
+    from('../frontend/dist') {
+        into 'static'
+    }
+}
+
+bootRun.dependsOn('processResources')
+
+task buildDocker(type: Docker) {
+    baseImage = 'develar/java:latest'
+    push = false
+    tag = 'codeoncoffee/boggle-solver'
+    addFile {
+        from bootJar
+        rename {'app.jar'}
+    }
+    entryPoint(['java', '-Djava.security.egd=file:/dev/./urandom', '-jar', '/app.jar'])
+    exposePort(8080)
+}
+
+
+buildDocker.dependsOn('bootJar')
+
+repositories {
+    mavenCentral()
+}
+
+bootJar {
+    baseName = 'codeoncoffee-boggle'
+    version =  '0.0.1'
+}
+
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("commons-io:commons-io:2.6")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile group: 'com.google.guava', name: 'guava', version: '27.0.1-jre'
+
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+
+}
+
